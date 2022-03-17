@@ -1,7 +1,8 @@
 import { Button } from './Button';
 
 import '../styles/sidebar.scss';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { api } from '../services/api';
 
 interface GenreResponseProps {
   id: number;
@@ -10,12 +11,22 @@ interface GenreResponseProps {
 }
 
 interface SideBarProps {
-  genres: GenreResponseProps[];
-  selectedGenreId: number;
+  genreId: number;
   setSelectedGenreId: Dispatch<SetStateAction<number>>;
 }
 
-export function SideBar({ genres, selectedGenreId, setSelectedGenreId }: SideBarProps) {
+export function SideBar({ genreId, setSelectedGenreId }: SideBarProps) {
+  const [genres, setGenres] = useState<Array<GenreResponseProps>>([]);
+
+  useEffect(() => {
+    async function fetchGenres() {
+      const { data } = await api.get<Array<GenreResponseProps>>('genres');
+      setGenres(data);
+    }
+
+    fetchGenres();
+  }, [genreId]);
+
   function handleClickButton(id: number) {
     setSelectedGenreId(id);
   }
@@ -31,7 +42,7 @@ export function SideBar({ genres, selectedGenreId, setSelectedGenreId }: SideBar
             title={genre.title}
             iconName={genre.name}
             onClick={() => handleClickButton(genre.id)}
-            selected={selectedGenreId === genre.id}
+            selected={genreId === genre.id}
           />
         ))}
       </div>
