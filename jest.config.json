@@ -9,5 +9,13 @@
   "testEnvironment": "jsdom",
   "moduleNameMapper": {
     "\\.(scss|sass|css)$": "identity-obj-proxy"
-  }
+  },
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "src/**/*.tsx",
+    "!src/**/*.spec.tsx",
+    "!src/**/App.tsx",
+    "!src/**/index.tsx"
+  ],
+  "coverageReporters": ["lcov", "text"]
 }
