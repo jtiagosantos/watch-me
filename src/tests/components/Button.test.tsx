@@ -3,15 +3,13 @@ import { Button } from '../../components/Button';
 
 describe('Button component', () => {
   it('renders correctly', () => {
-    const { getByText, rerender, debug } = render(
+    const { getByText, rerender } = render(
       <Button 
         title='mocked-title' 
         iconName='action' 
         selected={true} 
       />
     );
-
-    debug();
 
     let selectedButton;
 
