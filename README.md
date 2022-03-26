@@ -60,6 +60,13 @@ $ yarn ou npm i
 $ yarn server ou npm run server
 $ yarn dev ou npm run dev
 ```
+
+4️⃣ Run tests:
+
+```bash
+$ yarn test or npm test
+```
+
 <hr>
 
 ## 🛠 Technologies
@@ -70,6 +77,10 @@ The following tools were used in the construction of project:
 - **[Typescript](https://www.typescriptlang.org/)**
 - **[Sass](https://sass-lang.com/)**
 - **[Json-server](https://www.npmjs.com/package/json-server)**
+- **[Jest](https://jestjs.io/pt-BR/)**
+- **[Testing library](https://testing-library.com/docs/)**
+- **[Axios-mock-adapater](https://www.npmjs.com/package/axios-mock-adapter)**
+- **[Ts-jest](https://www.npmjs.com/package/ts-jest)**
 
 <hr>
 
