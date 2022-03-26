@@ -1,5 +1,7 @@
-import { api } from '../../services/api';
 import AxiosMockAdapter from 'axios-mock-adapter';
+import { render, fireEvent } from '@testing-library/react';
+import { api } from '../../services/api';
+import { SideBar } from '../../components/SideBar';
 
 const mockedAPI = new AxiosMockAdapter(api);
 
@@ -37,19 +39,30 @@ const mockedResponseBody = [
 ];
 
 describe('SideBar component', () => {
-  it('fetch genres returns correctly data', async () => {
-    mockedAPI.onGet('genres').reply(200, mockedResponseBody);
+  mockedAPI.onGet('genres').reply(200, mockedResponseBody);
 
-    const { data } = await api.get('genres');
-
-    expect(data).toEqual(
-      expect.arrayContaining([
-        {
-          id: 3,
-          name: 'documentary',
-          title: 'Documentário',
-        }
-      ])
+  it('renders correctly data', async () => {
+    const { findByText } = render(
+      <SideBar genreId={1} setSelectedGenreId={() => {}} />
     );
+
+    expect(await findByText('Documentário')).toBeInTheDocument();
+  });
+
+  it('calls setSelectedGenreId function when click on button', async () => {
+    const mockedSetSelectedGenreId = jest.fn();
+
+    const { findByText } = render(
+      <SideBar 
+        genreId={1} 
+        setSelectedGenreId={mockedSetSelectedGenreId} 
+      />
+    );
+
+    const button = await findByText('Documentário');
+
+    fireEvent.click(button);
+
+    expect(mockedSetSelectedGenreId).toBeCalled();
   });
 });
