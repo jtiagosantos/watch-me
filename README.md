@@ -1,4 +1,4 @@
-<h1 align="center">Watch Me</h1>
+<h1 align="center" id="top">Watch Me</h1>
 
 <p align="center">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/jtiagosantos/watch-me?color=%green">
@@ -98,3 +98,6 @@ The following tools were used in the construction of project:
 ## 📝 License
 
 This project is under license [MIT](./LICENSE).
+
+
+🔝 <a href="#top" align="center">Back to top</a>
